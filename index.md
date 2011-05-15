@@ -3,8 +3,8 @@ title: The Aura Command Line package
 layout: default
 ---
 
-Introduction
-============
+Aura CLI
+========
 
 The Aura CLI package provides a system for creating and executing CLI `Command` objects.  It includes facilities for parsing command-line options and handling standard input/output; it is [signal](https://github.com/auraphp/aura.signal) aware as well.
 
