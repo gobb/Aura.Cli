@@ -6,9 +6,9 @@ layout: default
 Aura CLI
 ========
 
-The Aura CLI package provides a system for creating and executing CLI `Command` objects.  It includes facilities for parsing command-line options and handling standard input/output; it is [signal](https://github.com/auraphp/aura.signal) aware as well.
+The Aura CLI package provides a system for creating and executing CLI `Command` objects.  It includes facilities for parsing command-line options and handling standard input/output; it is [signal](https://github.com/auraphp/Aura.Signal) aware as well.
 
-The Aura CLI package depends on the [aura.di](http://https://github.com/auraphp/aura.di) and [aura.signal](http://https://github.com/auraphp/aura.signal) packages.
+The Aura CLI package depends on the [Aura.Di](http://https://github.com/auraphp/Aura.Di) and [Aura.Signal](http://https://github.com/auraphp/Aura.Signal) packages.
 
 Basic Usage
 ===========
@@ -19,8 +19,8 @@ Action and Input/Output
 The logic for the `Command` goes in the `action()` method. In the example below, we perform some basic input/output.
 
     <?php
-    namespace vendor\package;
-    use aura\cli\Command;
+    namespace Vendor\Package;
+    use Aura\Cli\Command;
 
     class Example extends Command
     {
@@ -50,8 +50,8 @@ Signal Hooks
 There are four signal hooks on the CLI `Command`; these are invoked through the `$signal` signal manager.  Use the pre- and post-action methods to perform logic before and after the action; use pre- and post-exec methods to perform setup and teardown.
 
     <?php
-    namespace vendor\package;
-    use aura\cli\Command;
+    namespace Vendor\Package;
+    use Aura\Cli\Command;
 
     class Example extends Command
     {
@@ -91,8 +91,8 @@ Argument Params
 We may wish to pass information as part of the invocation.  To read this information while in the `Command`, use `$this->params`.
 
     <?php
-    namespace vendor\package;
-    use aura\cli\Command;
+    namespace Vendor\Package;
+    use Aura\Cli\Command;
 
     class Example extends Command
     {
@@ -128,9 +128,9 @@ To work with options, we first define them in the `$options` array of the `Comma
 To define an option, do something like the following:
 
     <?php
-    namespace vendor\package;
-    use aura\cli\Command;
-    use aura\cli\Option;
+    namespace Vendor\Package;
+    use Aura\Cli\Command;
+    use Aura\Cli\Option;
     
     class Example extends Command
     {
@@ -195,29 +195,29 @@ Before we can run a `Command` object, we need what we will call an "invoking scr
 
 In the invoking script, do not instantiate the `Command` directly. Instead, create an array that maps short command names to their corresponding class names, and use a `CommandFactory` to create the `Command` object based on the short name.
 
-For example, the following code will instantiate a `vendor\package\Example` class from the `vendor.package/src` direcotry and execute it.  This is a little long; it makes use of various other Aura packages for necessary functionality.
+For example, the following code will instantiate a `Vendor\Package\Example` class from the `Vendor.Package/src` direcotry and execute it.  This is a little long; it makes use of various other Aura packages for necessary functionality.
 
     <?php
     // create a map of command names to command classes
     $command_map = array(
-        'example' => 'vendor\package\Example',
+        'example' => 'Vendor\Package\Example',
     );
     
     // set up an autoloader
-    $loader = require '/path/to/aura.autoload/scripts/instance.php';
+    $loader = require '/path/to/Aura.Autoload/scripts/instance.php';
     $loader->register();
-    $loader->addPrefix('aura\di\\',        '/path/to/aura.di/src');
-    $loader->addPrefix('aura\signal\\',    '/path/to/aura.signal/src');
-    $loader->addPrefix('aura\cli\\',       '/path/to/aura.cli/src');
-    $loader->addPrefix('vendor\package\\', '/path/to/vendor.package/src');
+    $loader->addPrefix('Aura\Di\\',        '/path/to/Aura.Di/src');
+    $loader->addPrefix('Aura\Signal\\',    '/path/to/Aura.Signal/src');
+    $loader->addPrefix('Aura\Cli\\',       '/path/to/Aura.Cli/src');
+    $loader->addPrefix('Vendor\Package\\', '/path/to/Vendor.Package/src');
     
     // instantiate and configure the DI container.
-    use aura\di\Container;
-    use aura\di\Forge;
-    use aura\di\Config;
+    use Aura\Di\Container;
+    use Aura\Di\Forge;
+    use Aura\Di\Config;
     $di = new Container(new Forge(new Config));
-    require '/path/to/aura.signal/config/default.php';
-    require '/path/to/aura.cli/config/default.php';
+    require '/path/to/Aura.Signal/config/default.php';
+    require '/path/to/Aura.Cli/config/default.php';
     
     // get the cli context object from the DI container, then discard the
     // invoking script name from the cli context argument values
@@ -239,6 +239,6 @@ For example, the following code will instantiate a `vendor\package\Example` clas
         echo $e->getMessage() . PHP_EOL;
     }
 
-Save the script as `command.php`.  After that, we can issue `php /path/to/command.php example` and it will run the `vendor\package\Example` class.
+Save the script as `command.php`.  After that, we can issue `php /path/to/Command.php example` and it will run the `Vendor\Package\Example` class.
 
 Wow that looks like a lot of code.  If you use the aura.system framework package, it does all that for you, but if you want to avoid the system as a whole, that's what you have to do.
