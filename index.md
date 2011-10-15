@@ -6,9 +6,9 @@ layout: default
 Aura CLI
 ========
 
-The Aura CLI package provides a system for creating and executing CLI `Command` objects.  It includes facilities for parsing command-line options and handling standard input/output; it is [signal](https://github.com/auraphp/Aura.Signal) aware as well.
+The [Aura CLI](https://github.com/auraphp/Aura.Cli) package provides a system for creating and executing CLI `Command` objects.  It includes facilities for parsing command-line options and handling standard input/output; it is [signal](https://github.com/auraphp/Aura.Signal) aware as well.
 
-The Aura CLI package depends on the [Aura.Di](http://https://github.com/auraphp/Aura.Di) and [Aura.Signal](http://https://github.com/auraphp/Aura.Signal) packages.
+The Aura CLI package depends on the [Aura.Di](https://github.com/auraphp/Aura.Di) and [Aura.Signal](https://github.com/auraphp/Aura.Signal) packages.
 
 Basic Usage
 ===========
