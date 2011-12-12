@@ -1,14 +1,12 @@
 ---
-title: The Aura Command Line package
+title: The Aura.Cli Package
 layout: default
 ---
 
 Aura CLI
 ========
 
-The Aura CLI package provides a system for creating and executing CLI `Command` objects.  It includes facilities for parsing command-line options and handling standard input/output; it is [signal](https://github.com/auraphp/Aura.Signal) aware as well.
-
-The Aura CLI package depends on the [Aura.Di](http://https://github.com/auraphp/Aura.Di) and [Aura.Signal](http://https://github.com/auraphp/Aura.Signal) packages.
+The Aura CLI package provides a system for creating and executing CLI `Command` objects.  It includes facilities for parsing command-line options and handling standard input/output.
 
 Basic Usage
 ===========
@@ -44,10 +42,10 @@ Use the `$stdio` object to work with standard input/output streams.  Its methods
 - `inln()` and `in()`: Read from stdin until the user hits enter; `inln()` leaves the trailing line ending in place, whereas `in()` strips it.
 
 
-Signal Hooks
+Method Hooks
 ------------
 
-There are four signal hooks on the CLI `Command`; these are invoked through the `$signal` signal manager.  Use the pre- and post-action methods to perform logic before and after the action; use pre- and post-exec methods to perform setup and teardown.
+There are four method hooks on the CLI `Command`.  Use the pre- and post-action methods to perform logic before and after the action; use pre- and post-exec methods to perform setup and teardown.
 
     <?php
     namespace Vendor\Package;
@@ -172,20 +170,6 @@ The `$options` array is keyed on what we want as the option name, and each eleme
 - `'default'`: The default value for the option if it is not passed.
 
 After we have defined the options and passed them at the command line, we can read them from the `$getopt` object as magic read-only properties.  Thus, for the above option named as `'foo_bar'`, we can retrieve its value by using `$this->getopt->foo_bar`.
-
-
-Signals and Skipping Action
----------------------------
-
-At `exec()` time, the `Command` sends a `'pre_exec'` signal to the signal manager, with the `Command` object itself as the only parameter. Use this to set up the `Command` object as needed.
-
-Before the `action()` method runs, the `Command` sends a `'pre_action'` signal to the signal manager, with the `Command` object itself as the only parameter.  
-
-To stop the `action()` from being run, a signal handler for `'pre_action'` can call the `skipAction()` method on the `Command`. This will skip the `action()` method and go directly to the `'post_exec'` signal.
-
-After the `action()` method runs, the `Command` sends a `'post_action'` signal to the signal manager, with the `Command` object itself as the only parameter.  (If the `action()` was skipped, the `'post_action'` signal will not be sent.)
-
-Finally, at the end of `exec()`, the `Command` sends a `'pre_exec'` signal to the signal manager, with the `Command` object itself as the only parameter. Use this to clean up after the `Command` object as needed.
 
 
 Invoking Script and Command Factory
