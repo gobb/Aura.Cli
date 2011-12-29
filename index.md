@@ -1,5 +1,5 @@
 ---
-title: The Aura.Cli Package
+title: Aura for PHP: Command Line Tools
 layout: default
 ---
 
