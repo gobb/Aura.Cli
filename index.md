@@ -132,15 +132,15 @@ To define an option, do something like the following:
     
     class Example extends Command
     {
-        protected $options = array(
-            'foo_bar' => array(
+        protected $options = [
+            'foo_bar' => [
                 'long'    => 'foo-bar',
                 'short'   => 'f',
                 'param'   => Option::PARAM_REQUIRED,
                 'multi'   => false,
                 'default' => null,
-            ),
-        );
+            ],
+        ];
         
         public function action()
         {
@@ -165,7 +165,7 @@ The `$options` array is keyed on what we want as the option name, and each eleme
 
 - `'param'`: Is a a param value required for the option, is it optional, or is it disallowed?  Use `Option::PARAM_REQUIRED` to force a param value to be passed, `Option::PARAM_OPTIONAL` to allow a value to be passed or not, or `Option::PARAM_REJECTED` to disallow any value from being passed.
 
-- `'multi'`: Is the option allowed to be passed multiple times in the same command?  E.g., "-f foo -f bar -f zim" will make the option value an array with three entries (`'foo'`, `'bar'`, and `'zim'`).
+- `'multi'`: Is the option allowed to be passed multiple times in the same command?  E.g., "-f foo -f bar -f zim" will make the option value an array with three entries: `['foo'`, `'bar'`, `'zim']`.
 
 - `'default'`: The default value for the option if it is not passed.
 
