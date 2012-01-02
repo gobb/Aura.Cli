@@ -1,5 +1,5 @@
 ---
-title: Aura for PHP; Command Line Tools
+title: Aura for PHP -- Command Line Tools
 layout: default
 ---
 
