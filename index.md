@@ -198,4 +198,4 @@ The `$options` array is keyed on what we want as the option name, and each eleme
 
 After we have defined the options and passed them at the command line, we can read them from the `$getopt` object as magic read-only properties.  Thus, for the above option named as `'foo_bar'`, we can retrieve its value by using `$this->getopt->foo_bar`.
 
-You can also look into the (complete example of Aura.Cli in wiki)[https://github.com/auraphp/docs/wiki]
+You can also look into the [complete example of Aura.Cli in wiki](https://github.com/auraphp/docs/wiki)
