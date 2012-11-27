@@ -10,7 +10,7 @@
         "options"
     ],
     "homepage": "http://auraphp.github.com/Aura.Cli",
-    "version": "1.0.0-dev",
+    "version": "1.0.0-beta2",
     "license": "BSD",
     "authors": [
         {
